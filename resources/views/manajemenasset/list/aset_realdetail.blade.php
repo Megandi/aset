@@ -51,7 +51,11 @@
               </tr>
               <tr>
                 <th>Status terakhir diubah oleh</th>
-                <th style="padding-top:10px"><input disabled class="form-control" value="{{$alat->user_last_updated}} - {{$alat->user_last->name}}"></th>
+                @if($alat->user_last_updated==0)
+                  <th style="padding-top:10px"><input disabled class="form-control" value=""></th>
+                @else
+                  <th style="padding-top:10px"><input disabled class="form-control" value="{{$alat->user_last_updated}} - {{$alat->user_last->name}}"></th>
+                @endif
               </tr>
               <tr>
                 <th>Status terakhir diubah pada</th>
