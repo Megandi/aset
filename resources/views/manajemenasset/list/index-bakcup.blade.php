@@ -12,7 +12,7 @@
   </h1>
   <ol class="breadcrumb">
     <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i>Dasbor</a></li>
-    <li><a href="#">Daftar Aset</a></li>
+    <li><a href="active">Daftar Aset</a></li>
   </ol>
 </section>
 
@@ -23,7 +23,7 @@
     <div class="box-header with-border">
       <h3 class="box-title">Daftar Aset</h3>
     </div>
-    <!--<a style="margin-left:15px;margin-top:5px;" href="#" id="detail" class="btn btn-primary btn-sm mb15"><i class="fa fa-info-circle" >&nbsp;&nbsp;</i>Detail Peralatan</a>-->
+    <a style="margin-left:15px;margin-top:5px;" href="#" id="detail" class="btn btn-primary btn-sm mb15"><i class="fa fa-info-circle" >&nbsp;&nbsp;</i>Detail Peralatan</a>
 
     <div class="box-body">
       <div id="jstree1">
@@ -117,31 +117,6 @@
     <!-- /.box-footer-->
   </div>
 
-  <div class="box">
-    <div class="box-header with-border">
-      <h3 class="box-title">Detail dan Daftar Aset</h3>
-      <a class="pull-right btn btn-primary" id="details" href="#"><i class="fa fa-info-circle" ></i></a></td>
-      <a class="pull-right btn btn-info" style="margin-right:5px;" id="ubah" href="#"><i class="fa fa-edit"></i></a>
-    </div>
-    <div class="box-body">
-      <div class="box-body table-responsive" id="divpertama">
-        <table class="table table-bordered">
-          <tr>
-            <th style="width: 10px">No.</th>
-            <th>Nama Peralatan</th>
-            <th>Status</th>
-            <th>Keterangan</th>
-            <th>Aksi</th>
-          </tr>
-          <tr>
-            <td colspan="5"><center>Tidak ada asset yang dipilih</center></td>
-          </tr>
-        </table>
-      </div>
-      <div id="divkedua"> </div>
-    </div>
-  </div>
-
 </section>
 <!-- /.content -->
 
@@ -152,21 +127,13 @@
     $('#jstree1').jstree();
   });
 
-  $('#jstree1').on("changed.jstree", function (e, data) {
-    var id = data.selected;
-    $("#divkedua").load("{{ URL::to('list/asset')}}/"+id);
-    $("#ubah").attr('href','{!! url('list/asset/detail') !!}/' + id);
-    $("#details").attr('href','{!! url('list/asset/detailaset') !!}/' + id);
-    document.getElementById('divpertama').style.display = 'none';
-  });
 
 
+	$('#jstree1').on("changed.jstree", function (e, data) {
+	  var id = data.selected;
+	  $("#detail").attr('href','{!! url('list/asset') !!}/' + id);
 
-	//$('#jstree1').on("changed.jstree", function (e, data) {
-	//  var id = data.selected;
-	//  $("#detail").attr('href','{!! url('list/asset') !!}/' + id);
-
-  //});
+	});
 
   // function detail(id) {
 	// 	$("#link").attr('href','{!! url('rlist/asset') !!}/' + id);

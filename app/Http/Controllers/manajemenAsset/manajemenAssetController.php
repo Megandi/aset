@@ -7,9 +7,15 @@ use App\ManajemenAsset;
 use DB;
 use Maatwebsite\Excel\Facades\Excel;
 use Auth;
+use View;
 
 class manajemenAssetController extends Controller
 {
+    public function __construct()
+    {
+      View::share(['menu' => '2']);
+    }
+
     public function dashboard()
     {
       $perbaikanAlat = ManajemenAsset::where('status', '2')->count();
@@ -19,6 +25,7 @@ class manajemenAssetController extends Controller
       return view('manajemenasset.dashboard')->with('perbaikanAlat', $perbaikanAlat)
                             ->with('totalAlat', $totalAlat)
                             ->with('alatRusak', $alatRusak)
+                            ->with('menu', '0')
                             ->with('alatBaik', $alatBaik);
     }
 
@@ -48,6 +55,7 @@ class manajemenAssetController extends Controller
 
       $kelas = new ManajemenAsset;
       $kelas->nama = $req->nama;
+      $kelas->no_aset = $req->no_aset;
       $kelas->keterangan = $req->keterangan;
       $kelas->status = $req->status;
       $kelas->asset = $req->asset;
@@ -131,6 +139,7 @@ class manajemenAssetController extends Controller
 
       $kelas = ManajemenAsset::find($req->id);
       $kelas->nama = $req->nama;
+      $kelas->no_aset = $req->no_aset;
       $kelas->keterangan = $req->keterangan;
       $kelas->status = $req->status;
       $kelas->asset = $req->asset;
@@ -145,9 +154,9 @@ class manajemenAssetController extends Controller
           ->with('alert', $alert);
     }
 
-    public function import()
+    public function import($id)
     {
-      return view('manajemenasset.manajemen.import');
+      return view('manajemenasset.manajemen.import')->with('id', $id);
     }
 
     public function importsample()
@@ -157,17 +166,17 @@ class manajemenAssetController extends Controller
         $result->sheet('aset', function($sheet)
         {
           $sheet->fromArray(array(
-              array('1', '0', 'GRIYA LEGITA', '1', 'keterangan aset', '0'),
-              array('2', '0', 'REKTORAT', '1', 'keterangan aset', '0'),
-              array('3', '1', 'Lantai 1 GL', '1', 'keterangan aset', '0'),
-              array('4', '1', 'Lantai 2 GL', '1', 'keterangan aset', '0'),
-              array('5', '2', 'Lift Rektorat', '1', 'keterangan aset', '1'),
-              array('6', '3', 'AC LOBBY GL', '1', 'keterangan aset', '1'),
+              array('AC', '1', 'keterangan aset', 'AS001'),
+              array('LAMPU', '1', 'keterangan aset', 'AS002'),
+              array('KURSI', '1', 'keterangan aset', 'AS003'),
+              array('MEJA DOSEN', '1', 'keterangan aset', 'AS004'),
+              array('PROYEKTOR', '1', 'keterangan aset', 'AS005'),
+              array('PAPAN TULIS', '1', 'keterangan aset', 'AS006'),
           ), null, 'A2', false, false);
-          $sheet->row(1, array('ID', 'PARENT', 'NAMA', 'STATUS', 'KETERANGAN', 'JENIS_ASET'));
+          $sheet->row(1, array('NAMA', 'STATUS', 'KETERANGAN', 'NOMOR_ASET'));
 
-          $sheet->setBorder('A1:F1', 'thin');
-          $sheet->cells('A1:F1', function($cells){
+          $sheet->setBorder('A1:D1', 'thin');
+          $sheet->cells('A1:D1', function($cells){
               $cells->setBackground('#0070c0');
               $cells->setFontColor('#ffffff');
               $cells->setValignment('center');
@@ -183,12 +192,10 @@ class manajemenAssetController extends Controller
               '6' => '15',
               '7' => '15',
           ));
-          $sheet->setWidth('A', '5');
+          $sheet->setWidth('A', '20');
           $sheet->setWidth('B', '7');
-          $sheet->setWidth('C', '20');
-          $sheet->setWidth('D', '7');
-          $sheet->setWidth('E', '20');
-          $sheet->setWidth('F', '10');
+          $sheet->setWidth('C', '40');
+          $sheet->setWidth('D', '15');
         });
         return redirect(url('manajemenasset/import'));
       })->download('xls');
@@ -209,28 +216,25 @@ class manajemenAssetController extends Controller
         $xls = explode(".", $filename);
 
         if ($xls[1] == "xls" || $xls[1] == "csv") {
-          ManajemenAsset::truncate();
           $result = Excel::load('public/imgaset/'.$filename)->get();
           foreach ($result as $row) {
             $aset = new manajemenAsset;
-            $aset->id = $row->id;
-            $aset->parent = $row->parent;
+            $aset->parent = $request->id;
             $aset->nama = $row->nama;
             $aset->status = $row->status;
+            $aset->no_aset = $row->nomor_aset;
             $aset->keterangan = $row->keterangan;
-            $aset->asset = $row->jenis_aset;
+            $aset->asset = '1';
             $aset->user_last_updated = Auth::user()->id;
             $aset->updated_at = date('Y-m-d H:i:s');
             $aset->save();
           }
-
-
-          $alert = "Berhasil dalam import data!";
+          $alert = "Berhasil import data!";
         } else {
-          $alert = "Gagal dalam import data!";
+          $alert = "Gagal import data!";
         }
         unlink('imgaset/'.$filename);
-        return redirect(url('manajemenasset/import'))
+        return redirect(url('manajemenasset/import/'.$request->id))
             ->with('alert', $alert);
     }
 
@@ -242,38 +246,36 @@ class manajemenAssetController extends Controller
       {
         $result->sheet('aset', function($sheet) use($aset)
         {
-          $i = 0;
+          $i = 0;$j=1;
           foreach ($aset as $asset) {
             if($asset->parent=='0'){
-              $parent = '0';
+              $parent = "-";
             } else {
-              $parent = $asset->parent;
+              $parent2 = ManajemenAsset::find($asset->parent);
+              $parent = $parent2->no_aset;
             }
 
             if($asset->status=='0'){
-              $status = '0';
+              $status = "Rusak";
+            } else if($asset->status=='1'){
+              $status = "Baik";
             } else {
-              $status = $asset->status;
+              $status = "Sedang diperbaiki";
             }
 
-            if($asset->asset=='0'){
-              $jenis = '0';
-            } else {
-              $jenis = $asset->asset;
-            }
             $data=[];
             array_push($data, array(
-                $asset->id,
-                $parent,
+                $j,
                 $asset->nama,
+                $asset->no_aset,
+                $parent,
                 $status,
-                $asset->keterangan,
-                $jenis
+                $asset->keterangan
             ));
             $sheet->fromArray($data, null, 'A2', false, false);
-            $i++;
+            $i++;$j++;
           }
-          $sheet->row(1, array('ID', 'PARENT', 'NAMA', 'STATUS', 'KETERANGAN', 'JENIS_ASET'));
+          $sheet->row(1, array('NO', 'NAMA', 'NO ASET', 'RUANGAN', 'STATUS', 'KETERANGAN'));
 
           $sheet->setBorder('A1:F1', 'thin');
           $sheet->cells('A1:F1', function($cells){
@@ -292,11 +294,11 @@ class manajemenAssetController extends Controller
             ));
           }
           $sheet->setWidth('A', '5');
-          $sheet->setWidth('B', '7');
-          $sheet->setWidth('C', '20');
-          $sheet->setWidth('D', '7');
-          $sheet->setWidth('E', '20');
-          $sheet->setWidth('F', '10');
+          $sheet->setWidth('B', '20');
+          $sheet->setWidth('C', '10');
+          $sheet->setWidth('D', '12');
+          $sheet->setWidth('E', '17');
+          $sheet->setWidth('F', '40');
         });
         return redirect(url('manajemenasset/import'));
       })->download('xls');

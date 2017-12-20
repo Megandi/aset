@@ -27,10 +27,10 @@
     <div class="col-lg-12">
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Daftar Gedung dan Ruangan</h3>
-          <a style="margin-left:15px;margin-top:5px;" href="{{url('manajemenasset/tambah')}}" id="detail" class="btn btn-primary btn-sm mb15 pull-right"><i class="fa fa-plus">&nbsp;</i>Tambah</a>
-          <a style="margin-left:15px;margin-top:5px;" href="{{url('manajemenasset/import')}}" id="detail" class="btn btn-warning btn-sm mb15 pull-right"><i class="fa fa-file-excel-o">&nbsp;</i>Import</a>
-          <a style="margin-left:15px;margin-top:5px;" href="{{url('manajemenasset/export')}}" id="detail" class="btn btn-info btn-sm mb15 pull-right"><i class="fa fa-file-excel-o">&nbsp;</i>Export</a>
+          <h3 class="box-title">Daftar Aset</h3>
+          <a style="margin-left:5px;" href="{{url('manajemenasset/tambah')}}" id="detail" class="btn btn-primary btn-sm mb15 pull-right"><i class="fa fa-plus">&nbsp;</i>Tambah</a>
+          <!--<a style="margin-left:15px;margin-top:5px;" href="{{url('manajemenasset/import')}}" id="detail" class="btn btn-warning btn-sm mb15 pull-right"><i class="fa fa-file-excel-o">&nbsp;</i>Import</a>-->
+          <a href="{{url('manajemenasset/export')}}" id="detail" class="btn btn-info btn-sm mb15 pull-right"><i class="fa fa-file-excel-o">&nbsp;</i>Export</a>
         </div>
 
         <div class="box-body">
@@ -66,9 +66,10 @@
 
   <div class="box">
     <div class="box-header with-border">
-      <h3 class="box-title">Detail dan Daftar Peralatan</h3>
+      <h3 class="box-title">Detail dan Daftar Aset</h3>
       <a href="#" id="editparent" class="pull-right btn btn-info"><i class="fa fa-edit"></i></a>
       <a style="margin-right:5px;" id="deleteparent" href="#" onclick="return confirm('Are you sure you want to delete this data ?')" class="pull-right btn btn-danger"><i class="fa fa-trash"></i></a>
+      <a style="margin-right:5px;" id="importparent" href="#" id="detail" class="btn btn-warning pull-right"><i class="fa fa-file-excel-o">&nbsp;</i>Import</a>
     </div>
     <div class="box-body">
       <div id="divpertama">
@@ -101,6 +102,7 @@
     $("#divkedua").load("{{ URL::to('manajemenasset/load/peralatan')}}/"+id);
     $("#editparent").attr('href','{!! url('manajemenasset/edit') !!}/' + id);
     $("#deleteparent").attr('href','{!! url('manajemenasset/hapus') !!}/' + id);
+    $("#importparent").attr('href','{!! url('manajemenasset/import') !!}/' + id);
     document.getElementById('divpertama').style.display = 'none';
   });
 

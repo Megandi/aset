@@ -8,11 +8,22 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Asset UP</title>
-    <link rel="shortcut icon" href="{{ asset('img/list.png') }}" />
+    <title>Sistem Monitoring Aset</title>
+    <link rel="shortcut icon" href="{{ asset('img/logo-Press.png') }}" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style type="text/css">
+
+
+      #banner {
+        background: url('{{asset('img/bg.png')}}') center center no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+      }
+
+    </style>
 </head>
 <body>
     <div id="app">
@@ -24,7 +35,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        Asset UP
+                        MONAS UP
                     </a>
                 </div>
 

@@ -42,7 +42,7 @@
               <td>{{$i++}}.</td>
               <td>{{$row->name}}</td>
               <td><a class="btn btn-info" href="{{url('manajemenrole/setmenu/'.$row->id)}}"><i class="fa fa-edit"></i></a>
-              <a class="btn btn-danger" href="{{url('manajemenrole/hapus/'.$row->id)}}" onclick="return confirm('Anda yakin ingin menghapus user ini?')" ><i class="fa fa-edit"></i></a></td>
+              <a class="btn btn-danger" href="{{url('manajemenrole/hapus/'.$row->id)}}" onclick="return confirm('Anda yakin ingin menghapus user ini?')" ><i class="fa fa-trash"></i></a></td>
             </tr>
           @endforeach
         </table>

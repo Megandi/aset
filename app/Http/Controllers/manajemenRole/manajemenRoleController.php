@@ -6,9 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\levelType;
 use App\levelAkses;
+use View;
 
 class manajemenRoleController extends Controller
 {
+    public function __construct()
+    {
+      View::share(['menu' => '4']);
+    }
+
     public function index()
     {
       $level = levelType::all();

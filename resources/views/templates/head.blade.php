@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>AssetUP App</title>
+<title>Sistem Monitoring Aset</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <!-- Bootstrap 3.3.6 -->
@@ -18,7 +18,7 @@
 <!-- Select2 style -->
 <link rel="stylesheet" href="{{ url('adminlte/plugins/select2/select2.min.css') }}">
 
-<link rel="shortcut icon" href="{{ asset('img/list.png') }}" />
+<link rel="shortcut icon" href="{{ asset('img/logo-Press.png') }}" />
 
 
 <!-- jQuery 2.2.3 -->
@@ -60,3 +60,7 @@
     background: transparent !important;
   }
 </style>
+
+<?php
+  ini_set('max_execution_time', 300);
+?>

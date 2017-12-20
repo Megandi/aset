@@ -54,6 +54,10 @@
                 </div>
               </div>
               <div class="col-lg-6">
+                <div class="form-group">
+                  <label>No Aset</label>
+                  <input type="text" name="no_aset" class="form-control" value="{{$asset->no_aset}}"  placeholder="Masukkan no aset">
+                </div>
                 <div class="form-group" id="divLantai">
                   <label>Sub Aset Dari</label>
                   <select name="idDibawah" style="text-transform:uppercase" id="selectId" value="test" class="js-lantai form-control">
@@ -62,7 +66,7 @@
                 </div>
                 <div class="form-group">
                   <label>Keterangan</label>
-                  <textarea name="keterangan" required="true" class="form-control" placeholder="Masukkan keterangan" class="form-control" rows="3">{{$asset->keterangan}}</textarea>
+                  <textarea name="keterangan" class="form-control" placeholder="Masukkan keterangan" class="form-control" rows="3">{{$asset->keterangan}}</textarea>
                 </div>
               </div>
             </div>
@@ -84,7 +88,6 @@
 <script>
 
   var parent = <?php echo json_encode($parent);?>;
-  window.alert(parent);
 
 
   $(document).ready(function(){

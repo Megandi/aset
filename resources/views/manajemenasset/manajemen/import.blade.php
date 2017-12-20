@@ -41,6 +41,7 @@
             <div class="row">
               <div class="row">
                 <div class="col-md-11">
+                    <input type="hidden" value={{$id}} name="id">
                     <div class="form-group">
                         <label for="import" class="col-sm-2 control-label">Excel File</label>
                         <div class="col-sm-6">
@@ -50,19 +51,17 @@
                     <div class="form-group">
                         <label for="import" class="col-sm-2 control-label">Format</label>
                         <div class="col-sm-10">
-                            <input type='text' readonly class='form-control' value='Sheet 1 : ID | PARENT | NAMA | STATUS | KETERANGAN | JENIS_ASET'>
+                            <input type='text' readonly class='form-control' value='Sheet 1 : NAMA | STATUS | KETERANGAN | NOMOR_ASET'>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="import" class="col-sm-2 control-label">Keterangan</label>
                         <div class="col-sm-9">
                             <ul>
-                                <li><b>ID:</b> ID aset yang ingin disimpan. ID ini akan dijadikan acuan apabila aset menjadi parent dari aset yang lain. ID tiap aset bersifat unik.</li>
-                                <li><b>PARENT:</b> Tulis ID parent secara jelas dan akurat | untuk aset utama (yang tidak memiliki parent) isikan dengan 0.</li>
                                 <li><b>NAMA:</b> Nama dari aset.</li>
                                 <li><b>STATUS:</b> Isikan status dari aset yang akan disimpan. 1: aset dalam keadaan baik, 2: sedang diperbaiki, 0: Rusak. </li>
                                 <li><b>KETERANGAN:</b> Keterangan dari aset yang akan disimpan.</li>
-                                <li><b>JENIS ASET:</b> Isikan 0 apabila aset berbentuk gedung/ruangan dan isikan 1 apabila aset berbentuk alat.</li>
+                                <li><b>NOMOR_ASET:</b> Isikan nomor aset.</li>
                             </ul>
                         </div>
                     </div>
@@ -71,12 +70,12 @@
               <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="rejectModalLabel">
                 <div class="modal-dialog">
                   <div class="modal-content">
-                    <div class="modal-header"  style="background-color: #e30100;color: white">
+                    <div class="modal-header"  style="background-color: #3498db;color: white">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                       <h4 class="modal-title">PERHATIAN</h4>
                     </div>
               	  <div class="modal-body">
-              		  <p>Apakah anda yakin ingin mengimport data?<br>Jika iya, data aset yang lama akan terhapus secara permanent!</p>
+              		  <p>Apakah anda yakin ingin mengimport data? Pastikan data yang ingin diimport benar!</p>
               	  </div>
                     <div class="modal-footer">
                       <input type="submit" name="action" value="Import"  class="btn btn-primary"/>
@@ -89,7 +88,7 @@
             <div class="box-footer">
               <a href="{{url('manajemenasset')}}" class="btn btn-primary">Kembali</a>
               <a id="btnsave" class="btn btn-info pull-right" name="upload" style="margin-left:5px;" value="Upload"><i class="ti-upload mr5"></i>Upload</a>
-              <a href="{!! url('manajemenasset/import/sample') !!}" class="btn btn-warning pull-right"><i class="ti-download mr5"></i>Sample</a>
+              <a href="{!! url('manajemenasset/importsample') !!}" class="btn btn-warning pull-right"><i class="ti-download mr5"></i>Sample</a>
             </div>
             <!-- /.box-footer-->
           </div>

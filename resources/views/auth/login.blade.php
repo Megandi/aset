@@ -55,5 +55,10 @@
             </div>
         </div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <img src="{{asset('img/bg.png')}}" style="max-height:350px;opacity:0.2" class="img-responsive  pull-right">
+      </div>
+    </div>
 </div>
 @endsection

@@ -7,9 +7,15 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\levelType;
 use Auth;
+use View;
 
 class manajemenUserController extends Controller
 {
+    public function __construct()
+    {
+      View::share(['menu' => '3']);
+    }
+
     public function index()
     {
       $user = User::all();

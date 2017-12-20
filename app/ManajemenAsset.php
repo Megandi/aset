@@ -26,7 +26,7 @@ class ManajemenAsset extends Model
 
   public function log()
   {
-    return $this->hasMany('App\LogModel','id_aset');
+    return $this->hasMany('App\LogModel','id_aset')->orderBy('id', 'DESC');
   }
 
 }

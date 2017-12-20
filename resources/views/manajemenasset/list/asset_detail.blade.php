@@ -12,7 +12,8 @@
   </h4>
   <ol class="breadcrumb">
     <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i>Dasbor</a></li>
-    <li><a href="active">Detail Aset</a></li>
+    <li><a href="{{url('list')}}"><i class="fa fa-list"></i>Daftar Aset</a></li>
+    <li><a href="#">Ubah Status Aset</a></li>
   </ol>
 </section>
 
@@ -24,25 +25,22 @@
     </div>
   @endif
   <div class="row">
-
-    <form action="{{url('list/asset/detail/post')}}" method="post" enctype="multipart/form-data">
-      {{ csrf_field() }}
-      <input type="hidden" name="alatId" value="{{$alat->id}}">
-      <input type="hidden" name="parentId" value="{{$alat->parent}}">
-      <div class="col-lg-8">
+      <div class="col-lg-7">
         <div class="box">
+          <form action="{{url('list/asset/detail/post')}}" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <input type="hidden" name="alatId" value="{{$alat->id}}">
+            <input type="hidden" name="parentId" value="{{$alat->parent}}">
           <div class="box-header with-border">
             <h3 class="box-title">{{$alat->nama}}</h3>
           </div>
           <div class="box-body">
-            <table width="100%">
-              <tr>
-                <th>Status saat ini</th>
-                <th style="padding-top:10px"><input disabled class="form-control" @if($alat->status=='1') value="Baik" @elseif($alat->status=='2') value="Sedang diperbaiki" style="color:#f39c12" @else value="Rusak" style="color:#f56954" @endif></th>
-              </tr>
-              <tr>
-                <th>Status Terbaru</th>
-                <th style="padding-top:10px">
+                <div class="form-group">
+                  <label>Status saat ini</label>
+                  <input disabled class="form-control" @if($alat->status=='1') value="Baik" @elseif($alat->status=='2') value="Sedang diperbaiki" style="color:#f39c12" @else value="Rusak" style="color:#f56954" @endif>
+                </div>
+                <div class="form-group">
+                  <label>Status Terbaru</label>
                   <select name="status" class="form-control">
                     <?php $cek1 = App\levelAkses::where('id_level', Auth::User()->id_level)->where('id_menu', '6')->get(); ?>
                     @if(sizeof($cek1)==1)
@@ -65,35 +63,31 @@
                     @endif
                     @endif
                   </select>
-                </th>
-              </tr>
-              <tr>
-                <th>Foto</th>
-                <th style="padding-top:10px;">
-                    <label for="exampleInputFile">File input</label>
-                    <input type="file" id="fotoaset" name="fotoaset">
-                    <p class="help-block">Pilih gambar atau foto sesuai status aset</p>
-                </th>
-              </tr>
-              <tr>
-                <th>Keterangan</th>
-                <th style="padding-top:10px"><textarea required name="keterangan" class="form-control" rows="3">{{$alat->keterangan}}</textarea></th>
-              </tr>
-            </table>
+                </div>
+                <div class="form-group">
+                  <label>Keterangan</label>
+                  <textarea required name="keterangan" class="form-control" rows="3">{{$alat->keterangan}}</textarea>
+                </div>
+                <div class="form-group">
+                  <label>Foto</label>
+                  <label for="exampleInputFile">File input</label>
+                  <input type="file" id="fotoaset" name="fotoaset">
+                  <p class="help-block">Pilih gambar atau foto sesuai status aset</p>
+                </div>
           </div>
           <!-- /.box-body -->
           <div class="box-footer">
             @if($alat->asset=="1")
-              <a href="{{url('list/asset/'.$alat->parent)}}" class="btn btn-primary">Kembali</a>
+              <a href="{{url('list')}}" class="btn btn-primary">Kembali</a>
             @elseif($alat->asset=="0")
-              <a href="{{url('list/asset/'.$alat->id)}}" class="btn btn-primary">Kembali</a>
+              <a href="{{url('list')}}" class="btn btn-primary">Kembali</a>
             @endif
             <button class="btn btn-info pull-right">Simpan</button>
           </div>
           <!-- /.box-footer-->
+        </form>
         </div>
       </div>
-    </form>
   </div>
 </section>
 <!-- /.content -->

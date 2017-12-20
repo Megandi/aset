@@ -12,7 +12,8 @@
   </h4>
   <ol class="breadcrumb">
     <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i>Dasbor</a></li>
-    <li><a href="active">Detail Aset</a></li>
+    <li><a href="{{url('list')}}"><i class="fa fa-list"></i>Daftar Aset</a></li>
+    <li><a href="#">Detail Aset</a></li>
   </ol>
 </section>
 
@@ -31,6 +32,10 @@
           </div>
           <div class="box-body">
             <table width="100%">
+              <tr>
+                <th style="width:30%;">Nomor aset</th>
+                <th style="padding-top:10px"><input disabled class="form-control" value="{{$alat->no_aset}}"></th>
+              </tr>
               <tr>
                 <th style="width:30%;">Status saat ini</th>
                 <th style="padding-top:10px"><input disabled class="form-control" @if($alat->status=='1') value="Baik" @elseif($alat->status=='2') value="Sedang diperbaiki" style="color:#f39c12" @else value="Rusak" style="color:#f56954" @endif></th>
@@ -66,9 +71,9 @@
           <!-- /.box-body -->
           <div class="box-footer">
             @if($alat->asset=="1")
-              <a href="{{url('list/asset/'.$alat->parent)}}" class="btn btn-primary">Kembali</a>
+              <a href="{{url('list')}}" class="btn btn-primary">Kembali</a>
             @elseif($alat->asset=="0")
-              <a href="{{url('list/asset/'.$alat->id)}}" class="btn btn-primary">Kembali</a>
+              <a href="{{url('list')}}" class="btn btn-primary">Kembali</a>
             @endif
           </div>
           <!-- /.box-footer-->

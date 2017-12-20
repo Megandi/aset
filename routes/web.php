@@ -37,9 +37,9 @@ Route::group(['middleware' => ['web'] ], function () {
 
       Route::post('manajemenasset/save', 'manajemenAsset\manajemenAssetController@save');
       Route::get('manajemenasset/tambah', 'manajemenAsset\manajemenAssetController@add');
-      Route::get('manajemenasset/import', 'manajemenAsset\manajemenAssetController@import');
+      Route::get('manajemenasset/import/{id}', 'manajemenAsset\manajemenAssetController@import');
       Route::get('manajemenasset/export', 'manajemenAsset\manajemenAssetController@export');
-      Route::get('manajemenasset/import/sample', 'manajemenAsset\manajemenAssetController@importsample');
+      Route::get('manajemenasset/importsample', 'manajemenAsset\manajemenAssetController@importsample');
       Route::post('manajemenasset/importsave', 'manajemenAsset\manajemenAssetController@importsave');
       Route::get('manajemenasset/edit/{id}', 'manajemenAsset\manajemenAssetController@edit');
       Route::post('manajemenasset/edit/post', 'manajemenAsset\manajemenAssetController@editsave');

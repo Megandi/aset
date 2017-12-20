@@ -13,9 +13,15 @@ use File;
 use App\ManajemenAsset;
 use Intervention\Image\ImageManagerStatic as Image;
 use Auth;
+use View;
 
 class ListController extends Controller
 {
+
+  public function __construct()
+  {
+    View::share(['menu' => '1']);
+  }
 
   public function index()
   {
@@ -32,7 +38,9 @@ class ListController extends Controller
     //$asset = ManajemenAsset::find($idKelas);
     $gedung = manajemenAsset::find($id);
     $asset = ManajemenAsset::where('parent', $id)->where('asset', '1')->get();
-    return view('manajemenasset.list.list_asset')->with('assets', $asset)
+
+
+    return view('manajemenasset.list.tableaset')->with('assets', $asset)
                             ->with('parent', $id)
                             ->with('alat', $gedung);
   }
@@ -111,10 +119,10 @@ class ListController extends Controller
       $log->save();
 
       if($alat->asset=="0"){
-        return redirect(url('list/asset/'.$alat->id))
+        return redirect(url('list'))
             ->with('alert', $alert);
       } else {
-        return redirect(url('list/asset/'.$req->parentId))
+        return redirect(url('list'))
         ->with('alert', $alert);
       }
   }

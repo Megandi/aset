@@ -53,6 +53,10 @@
                 </div>
               </div>
               <div class="col-lg-6">
+                <div class="form-group">
+                  <label>No Aset</label>
+                  <input type="text" name="no_aset" class="form-control" placeholder="Masukkan no aset">
+                </div>
                 <div class="form-group" id="divLantai">
                   <label>Sub Aset Dari</label>
                   <select name="idDibawah" style="text-transform:uppercase" class="js-lantai form-control">
@@ -61,7 +65,7 @@
                 </div>
                 <div class="form-group">
                   <label>Keterangan</label>
-                  <textarea name="keterangan" required="true" class="form-control" placeholder="Masukkan keterangan" class="form-control" rows="3"></textarea>
+                  <textarea name="keterangan" class="form-control" placeholder="Masukkan keterangan" class="form-control" rows="2"></textarea>
                 </div>
               </div>
             </div>

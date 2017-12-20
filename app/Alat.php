@@ -16,6 +16,7 @@ class Alat extends Model
       'keterangan',
       'status',
       'foto',
+      'no_aset',
       'id_kelas'
   ];
 
