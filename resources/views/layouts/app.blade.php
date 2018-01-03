@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Sistem Monitoring Aset</title>
-    <link rel="shortcut icon" href="{{ asset('img/logo-Press.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('img/Logo-Up.png') }}" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

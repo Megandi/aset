@@ -18,7 +18,7 @@
 <!-- Select2 style -->
 <link rel="stylesheet" href="{{ url('adminlte/plugins/select2/select2.min.css') }}">
 
-<link rel="shortcut icon" href="{{ asset('img/logo-Press.png') }}" />
+<link rel="shortcut icon" href="{{ asset('img/Logo-Up.png') }}" />
 
 
 <!-- jQuery 2.2.3 -->
