@@ -81,7 +81,7 @@
             <th>Opsi</th>
           </tr>
           <tr>
-            <td colspan="4"><center>Tidak ada asset yang dipilih</center></td>
+            <td colspan="4"><center>Tidak ada aset yang dipilih</center></td>
           </tr>
         </table>
       </div>
