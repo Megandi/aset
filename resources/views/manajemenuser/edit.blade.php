@@ -50,7 +50,7 @@
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
-                  <label>Password</label>
+                  <label>Password (isi bila ingin diubah)</label>
                   <input type="password" name="passwordinput" class="form-control">
                 </div>
                 <div class="form-group">

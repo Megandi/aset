@@ -50,7 +50,7 @@
                   <input name="emailinput" class="form-control" value="{{$user->username}}">
                 </div>
                 <div class="form-group">
-                  <label>Password</label>
+                  <label>Password (isi bila ingin diubah)</label>
                   <input type="password" name="passwordinput" class="form-control">
                 </div>
               </div>
