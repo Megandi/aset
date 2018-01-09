@@ -40,12 +40,12 @@
                   <input type="hidden" name="id" required="true" class="form-control" value="{{$user->id}}">
                 </div>
                 <div class="form-group">
-                  <label>Username</label>
-                  <input type="text" name="username" required="true" class="form-control" value="{{$user->email}}">
-                </div>
-                <div class="form-group">
                   <label>Email</label>
                   <input name="emailinput" class="form-control" value="{{$user->username}}">
+                </div>
+                <div class="form-group">
+                  <label>Username</label>
+                  <input type="text" name="username" required="true" class="form-control" value="{{$user->email}}">
                 </div>
               </div>
               <div class="col-lg-6">

@@ -39,12 +39,12 @@
                   <input type="text" name="nama" required="true" class="form-control" placeholder="Masukkan nama">
                 </div>
                 <div class="form-group">
-                  <label>Username</label>
-                  <input type="text" name="username" required="true" class="form-control" placeholder="Masukkan username">
+                  <label>Email</label>
+                  <input type="text" name="emailinput" class="form-control" value="" placeholder="Masukkan email">
                 </div>
                 <div class="form-group">
-                  <label>Email</label>
-                  <input name="emailinput" class="form-control" value="">
+                  <label>Username</label>
+                  <input type="text" name="username" required="true" class="form-control" placeholder="Masukkan username">
                 </div>
               </div>
               <div class="col-lg-6">
