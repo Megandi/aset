@@ -30,6 +30,13 @@ class manajemenUserController extends Controller
 
     public function save(Request $req)
     {
+      $cekuser = User::where('email', $req->username)->get();
+      if(!$cekuser->isEmpty()){
+        $alert = "Gagal! Username sudah tersedia.";
+        return redirect(url('manajemenuser'))
+            ->with('alert', $alert);
+      }
+
       $alert = "Berhasil menambahkan!";
       $user = new User;
       $user->name = $req->nama;
@@ -63,12 +70,21 @@ class manajemenUserController extends Controller
 
     public function ubahsave(Request $req)
     {
+      $cekuser = User::where('email', $req->username)->first();
+      $userterpilih = User::find($req->id);
+
+      if($cekuser && $req->username!=$userterpilih->email){
+        $alert = "Gagal! Username sudah tersedia.";
+        return redirect(url('manajemenuser'))
+            ->with('alert', $alert);
+      }
+
       $alert = "Berhasil mengubah!";
       $user = User::find($req->id);
       $user->name = $req->nama;
       $user->username = $req->emailinput;
       $user->email = $req->username;
-      if($req->passwordinput!="megandi"){
+      if($req->passwordinput!=""){
         $user->password = bcrypt($req->passwordinput);
       }
       $user->status = '1';
@@ -87,12 +103,20 @@ class manajemenUserController extends Controller
 
     public function ubahsaveitself(Request $req)
     {
+      $cekuser = User::where('email', $req->username)->first();
+
+      if($cekuser && $req->username!=Auth::user()->email){
+        $alert = "Gagal! Username sudah tersedia.";
+        return redirect(url('/'))
+            ->with('alert', $alert);
+      }
+
       $alert = "Berhasil mengubah!";
       $user = User::find($req->id);
       $user->name = $req->nama;
       $user->username = $req->emailinput;
       $user->email = $req->username;
-      if($req->passwordinput!="megandi"){
+      if($req->passwordinput!=""){
         $user->password = bcrypt($req->passwordinput);
       }
       $user->status = '1';

@@ -47,11 +47,11 @@
               <div class="col-lg-6">
                 <div class="form-group">
                   <label>Email</label>
-                  <input name="emailinput" required="true" class="form-control" value="{{$user->username}}">
+                  <input name="emailinput" class="form-control" value="{{$user->username}}">
                 </div>
                 <div class="form-group">
                   <label>Password</label>
-                  <input type="password" name="passwordinput" required="true" class="form-control" value="megandi">
+                  <input type="password" name="passwordinput" class="form-control">
                 </div>
               </div>
             </div>

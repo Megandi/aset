@@ -19,9 +19,15 @@
 <!-- Main content -->
 <section class="content">
   @if(session('alert'))
-    <div class="alert alert-info alert-dismissible">
-      <h4><i class="icon fa fa-check"></i>{{ session('alert') }}</h4>
-    </div>
+    @if(session('alert')=="Gagal! Username sudah tersedia.")
+      <div class="alert alert-danger alert-dismissible">
+        <h4><i class="icon fa fa-times"></i>{{ session('alert') }}</h4>
+      </div>
+    @else
+      <div class="alert alert-info alert-dismissible">
+        <h4><i class="icon fa fa-check"></i>{{ session('alert') }}</h4>
+      </div>
+    @endif
   @endif
   <div class="row">
     <div class="col-lg-3 col-xs-6">
